@@ -9,7 +9,7 @@ package projetoPetshop;
  *
  * @author aluno
  */
-public class Cliente extends Pessoa implements IPessoa {
+public class Cliente extends Pessoa  implements IPessoa {
 
     private String tutorAnimal;
     private String endereco;
@@ -19,7 +19,7 @@ public class Cliente extends Pessoa implements IPessoa {
     private String cor;
     private float peso;
     private int idade;
-    private String dtnascAnim;
+    private String idadeAnim;
 
     public String getTutorAnimal() {
         return tutorAnimal;
@@ -82,27 +82,33 @@ public class Cliente extends Pessoa implements IPessoa {
     }
 
     public void setIdade(int idade) {
-        this.idade = idade;
+        if (idade < 1) {
+            throw new IllegalArgumentException("Idade inválida para o cadastro ...");
+        }
+        else{
+            this.idade=idade;
+        }
     }
 
-    public String getDtnascAnim() {
-        return dtnascAnim;
+    public String getIdadeAnim() {
+        return idadeAnim;
     }
 
-    public void setDtnascAnim(String dtnascAnim) {
-        this.dtnascAnim = dtnascAnim;
+    public void setIdadeAnim(String idadeAnim) {
+        if (idadeAnim< 1) {
+            throw new IllegalArgumentException("Idade inválida para o cadastro ...");
+        }
+        else{
+            this.idadeAnim = idadeAnim;
+        }
     }
 
+    @Override
     public void exibir() {
-        System.out.println(getTutorAnimal);
-        System.out.println(getEndereco);
-        System.out.println(getTelefone);
-        System.out.println(getNomeA);
-        System.out.println(getRaca);
-        System.out.println(getCor);
-        System.out.println(getPeso);
-        System.out.println(getIdade);
-        System.out.println(getDtnascAnim);
+         System.out.printf("TutorAnimal: %s | Endereco: %s | Telefone: %d | NomeA: %s | raca: %d "
+                 + "|Cor %s| Peso %d | Idade %d| dtnascAnim %d\n",
+                 getTutorAnimal(),getEndereco(),getTelefone(),getNomeA(),getRaca(),getCor(),getPeso(),
+                 getIdade(),getIdadeAnim());
 
     }
 }

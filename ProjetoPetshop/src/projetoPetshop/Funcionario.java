@@ -16,7 +16,15 @@ public class Funcionario extends Pessoa implements IPessoa {
     private String cargo;
     private String email;
     private int ctps;
+    private String nome;
+    private int idade; 
+    
 
+    public Funcionario() {
+		this.idade = 0;
+		this.salario = -1;
+	}
+    
     public String getEmail() {
         return email;
     }
@@ -38,7 +46,12 @@ public class Funcionario extends Pessoa implements IPessoa {
     }
 
     public void setSalario(double salario) {
-        this.salario = salario;
+        if (salario < 0) {
+            throw new IllegalArgumentException("Salario  inválida para o cadastro ...");
+        }
+        else{
+            this.salario=salario;
+        }
     }
 
     public int getCargaH() {
@@ -59,7 +72,24 @@ public class Funcionario extends Pessoa implements IPessoa {
 
     @Override
     public void exibir() {
-                
+       System.out.printf("Salario: %if |cargaH : %d | cargo: %s | Email: %s | ctps: %d\n",
+       getSalario(),getCargaH(),getCargo(),getEmail(),getCtps());  
        
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
     }
 }

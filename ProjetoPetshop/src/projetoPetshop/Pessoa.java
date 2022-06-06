@@ -27,7 +27,12 @@ public abstract class Pessoa {
     }
 
     public void setIdade(int idade) {
-        this.idade = idade;
+        if (idade < 1) {
+            throw new IllegalArgumentException("Idade inválida para o cadastro ...");
+        }
+        else{
+            this.idade=idade;
+        }
     }
 
     public int getCpf() {
