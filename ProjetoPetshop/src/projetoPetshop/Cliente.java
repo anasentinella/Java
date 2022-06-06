@@ -111,4 +111,46 @@ public class Cliente extends Pessoa  implements IPessoa {
                  getIdade(),getIdadeAnim());
 
     }
+    public static Cliente novoCliente(){ 
+    Cliente novoCliente = new Cliente();
+
+		System.out.println("Digite o nome do Cliente: ");
+		novoCliente.setNome(scanUsuario.next());
+		scanUsuario.nextLine();
+
+		while (novoCliente.getIdade() < 1) {
+			try {
+				System.out.println("Digite a idade do cliente: ");
+				novoCliente.setIdade(scanUsuario.nextInt());
+			} catch (IllegalArgumentException e) {
+				System.out.println("Idade de cliente invÃ¡lida...");
+			} catch (InputMismatchException e) {
+				System.out.println("Tipo de idade invalida...");
+				scanUsuario.nextLine();
+			}
+		}
+		
+		while (novoCliente.getTelefone() < 0) {
+			try {
+				System.out.print("Digite o telefone do Cliente: \n");
+				novoCliente.setTelefone(scanUsuario.nextInt());
+			} catch (IllegalArgumentException e) {
+				System.out.println("Valor de telefone invalido... ");
+			} catch (InputMismatchException e) {
+				System.out.println("Tipo de telefone invalido... ");
+				scanUsuario.nextLine();
+			}
+		}
+		
+
+		System.out.print("Digite a flor favorita do Cliente: \n");
+		novoCliente.setFlorFavorita(scanUsuario.next());
+		scanUsuario.nextLine();
+
+		System.out.println("Digite o email do Cliente: ");
+		novoCliente.setEmail(scanUsuario.next());
+
+		// retorna array
+                retorn novoCliente;
+    }
 }

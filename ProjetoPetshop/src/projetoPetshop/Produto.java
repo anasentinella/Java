@@ -14,13 +14,21 @@ class Produto {
  private String descricao;
  private int codigo;
 
-
+    public Produto() {
+        this.preco = 0;
+    }
+ 
     public int getPreco() {
         return preco;
     }
 
     public void setPreco(int preco) {
-        this.preco = preco;
+        if (preco < 1) {
+            throw new IllegalArgumentException("Preco inválido para o cadasto ...");
+        }
+        else{
+            this.preco=preco;
+        }
     }
 
     public String getDescricao() {
@@ -41,6 +49,4 @@ class Produto {
         this.codigo = codigo;
     }
 
-    
- 
 }
