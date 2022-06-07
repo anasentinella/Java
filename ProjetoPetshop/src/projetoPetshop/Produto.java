@@ -10,11 +10,11 @@ package projetoPetshop;
  * @author aluno
  */
 class Produto {
- private double preco;.
- private String descricao;.
- private int codigo;.
- private String tipo;.
- private int datacomp;
+ private double preco;
+ private String descricao;
+ private int codigo;
+ private String tipo;
+ private  String datacomp;
 
     public Produto() {
         this.preco = 0;
@@ -59,12 +59,17 @@ class Produto {
         this.tipo = tipo;
     }
 
-    public int getDatacomp() {
+    public String getDatacomp() {
         return datacomp;
     }
 
-    public void setDatacomp(int datacomp) {
+    public void setDatacomp(String datacomp) {
         this.datacomp = datacomp;
+    }
+
+    void exibir() {
+       System.out.printf("Preco %if| Descricao %s| Codigo: %d |Tipo : %s | DataComp: %d\n",
+       getPreco(),getPreco(),getDescricao(),getCodigo(),getTipo(),getDatacomp());  
     }
 
 }

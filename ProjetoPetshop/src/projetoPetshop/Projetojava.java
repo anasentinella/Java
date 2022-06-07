@@ -11,9 +11,9 @@ import java.util.Scanner;
 
 public class Projetojava {
 
-    private static ArrayList<Cliente> clientArray;
+    private static ArrayList<Cliente> cliArray;
     private static ArrayList<Funcionario> funcArray;
-    private static ArrayList<Produto> productArray;
+    private static ArrayList<Produto> prodArray;
     private static final Scanner scan = new Scanner(System.in);
 
     Scanner menu = new Scanner(System.in);
@@ -32,20 +32,20 @@ public class Projetojava {
         System.out.println("--------------------");
         System.out.println("Escolha o item que deseja selecionar: ");
 
-        int i = new scan.NextInt();
+        int i = scan.nextInt();
 
         switch (i) {
             case 1:
-                cadastrarCliente.add(AdicionaCliente());
+                cliArray.add(AdicionaCliente());
                 break;
             case 2:
-                cadastrarFuncionario.add(AdicionaFuncionario());
+                funcArray.add(AdicionaFuncionario());
                 break;
             case 3:
-                cadastrarProduto.add(AdicionaProduto());
+                prodArray.add(AdicionaProduto());
                 break;
             case 4:
-                BuscaCliente();
+                buscarCliente();
                 break;
             case 5:
                 BuscaFuncionario();
@@ -54,51 +54,53 @@ public class Projetojava {
                 buscaProduto();
                 break;
             case 7:
-                maisvelho();
+                CliMaisVelho();
                 break;
             case 8:
-                maisjovem();
+                CliMaisNovo();
                 break;
             case 9:
-                climaiorq60;
+                maisSessenta();
                 break;
             case 10:
-                climenq18;
+                CliMenorDezoito();
                 break;
             case 11:
-                idMediacli;
+                MediaIdade();
                 break;
             case 12:
-                produtoCaro;
+                ProdutoCaro();
                 break;
             case 13:
-                produtoBarato;
+                ProdutoBarato();
                 break;
             case 14:
-                mediaPrecos;
+                MediaPrecos();
                 break;
             case 15:
-                mediaAcima;
+                ProdAcimaMediaPreco();
+                break;
+            case 16:
+                ListaClientes();
                 break;
         }
 
     }
 
     public static void inicItens() {
-        clientArray = new ArrayList();
+        cliArray = new ArrayList();
         funcArray = new ArrayList();
-        productArray = new ArrayList();
+        prodArray = new ArrayList();
     }
 
-  
-        public static Cliente AdicionaCliente() {
-		// add cliente
-		Cliente novoCli = new Cliente();
-        
+    public static Cliente AdicionaCliente() {
+        // add cliente
+        Cliente novoCli = new Cliente();
+
         System.out.println("Digite o nome do Cliente: \n");
         novoCli.setTutorAnimal(scan.next());
         scan.nextLine();
-        
+
         while (novoCli.getIdade() < 1) {
             try {
                 System.out.println("Digite a idade do cliente: \n");
@@ -126,7 +128,7 @@ public class Projetojava {
         System.out.print("Digite o endereco do Cliente: \n");
         novoCli.setEndereco(scan.next());
         scan.nextLine();
-        
+
         System.out.print("Digite o nome do Animal do Cliente: \n");
         novoCli.setNomeA(scan.next());
         scan.nextLine();
@@ -142,15 +144,15 @@ public class Projetojava {
                 scan.nextLine();
             }
         }
-        
+
         System.out.println("Digite a raca do Animal: \n");
         novoCli.setRaca(scan.next());
         scan.nextLine();
-        
+
         System.out.println("Digite a cor do Animal: \n");
         novoCli.setCor(scan.next());
         scan.nextLine();
-        
+
         while (novoCli.getPeso() < 0) {
             try {
                 System.out.println("Digite o peso do Animal:  \n");
@@ -163,13 +165,11 @@ public class Projetojava {
             }
         }
 
-        return novoCli; 
-                
-    }
-        //-----------Cadastrar Funcionário--------------
- 
+        return novoCli;
 
-    private static  Funcionario AdicionaFuncionario() {
+    }
+
+    private static Funcionario AdicionaFuncionario() {
         Funcionario novoFunc = new Funcionario();
 
         System.out.println("Digite o nome do Funcionario: \n");
@@ -192,12 +192,11 @@ public class Projetojava {
         System.out.println("Digite o cargo do Funcionario: \n");
         novoFunc.setCargo(scan.next());
         scan.nextLine();
-        
+
         System.out.println("Digite o email do Funcionario: \n");
         novoFunc.setEmail(scan.next());
         scan.nextLine();
-        
-        
+
         while (novoFunc.getSalario() < 0) {
             try {
                 System.out.println("Digite o salario do funcionario: \n");
@@ -211,22 +210,17 @@ public class Projetojava {
 
         System.out.println("Digite a carga horaria semanal do Funcionario: \n");
         novoFunc.setCargaH(scan.nextInt());
-        
+
         System.out.println("Digite o codigo da carteira de trabalho do Funcionario: \n");
         novoFunc.setCtps(scan.nextInt());
-        
-        
 
         return novoFunc;
     }
 
-}
-        //------------------Cadastrar Produto----------------------------//
-
-        private static Produto AdicinaProduto() {
+    private static Produto AdicionaProduto() {
         Produto novoProd = new Produto();
 
-        System.out.println("Digite o tipo do produto (E industrial ou um servico do Petshop): \n");
+        System.out.println("Digite o tipo do produto (É Industrial ou um serviço do Petshop): \n");
         novoProd.setTipo(scan.next());
         scan.nextLine();
 
@@ -236,11 +230,11 @@ public class Projetojava {
 
         System.out.println("Digite o codigo do produto: \n");
         novoProd.setCodigo(scan.nextInt());
-	
+
         while (novoProd.getPreco() < 1) {
             try {
                 System.out.println("Digite o preco do Produto: \n");
-                novoFunc.setPreco(scan.nextDouble());
+                novoProd.setPreco(scan.nextDouble());
             } catch (IllegalArgumentException e) {
                 System.out.println("Preco inserido não pode ser cadastrado...\n");
             } catch (InputMismatchException e) {
@@ -250,27 +244,31 @@ public class Projetojava {
         }
 
         System.out.println("Digite a data de compra do produto: \n");
-        novoProd.setDatacomp(scan.nextInt());
+        novoProd.setDatacomp(scan.nextLine());
 
-
-		return novoProduto;
-	}
+        return novoProd;
     }
-        private static void buscarCliente() {
-		System.out.println("Para realizar a busca, digite, no minimo parte do nome do cliente: ");
-		String clienteIniciais = scanUsuario.next();
 
-		for (Cliente c : cadastroClientes) {
-			if (c.getNome().startsWith(clienteIniciais)) {
-				c.exibir();
-			}
-		}
-	}
+    private static void buscarCliente() {
 
-    
+        System.out.println("Para realizar a busca, digite, no minimo parte do nome do cliente: ");
+        String cliIniciais = scan.nextLine();
+        for (Cliente c : cliArray) {
+            if (c.getNome().startsWith(cliIniciais)) {
+                c.exibir();
+            }
+        }
+    }
 
     private static void BuscaFuncionario() {
-        
+        System.out.println("Para realizar a busca, digite, no minimo parte do nome do Funcionario: ");
+
+        String funcIniciais = scan.nextLine();
+        for (Funcionario f : funcArray) {
+            if (f.getNome().startsWith(funcIniciais)) {
+                f.exibir();
+            }
+        }
     }
 
     private static void buscaProduto() {
@@ -279,16 +277,16 @@ public class Projetojava {
         System.out.println("2 - Descrição");
         System.out.println("3 - Código");
         System.out.print("\nDigite o número da opção escolhida: ");
-        int a = input.nextInt();
-        switch (a) {
+        int p = scan.nextInt();
+        switch (p) {
             case 1:
-                buscaProdutoValor();
+                buscarPrecoProduto();
                 break;
             case 2:
-                buscaProdutoDesc();
+                buscarDescProducao();
                 break;
             case 3:
-                buscaProdutoCod();
+                buscarDescProducao();
                 break;
             default:
                 System.out.println("Entrada inválida, por padrão, voltando ao menu.");
@@ -296,98 +294,143 @@ public class Projetojava {
         }
     }
 
-    private static void maisvelho() {
-        int maisSessenta = 0;
+    private static void buscarPrecoProduto() {
+        System.out.println("Para realizar a busca digite o preco do produto: ");
+        double produtoPreco;
+        produtoPreco = scan.nextDouble();
 
-        for (Cliente c : cadastrarCliente) {
-            if (c.getIdade() > 60) {
-                qtdClientesMaisSessenta++;
+        for (Produto p : prodArray) {
+            if (p.getPreco() == produtoPreco) {
+                p.exibir();
             }
         }
-        return qtdClientesMaisSessenta;
     }
-}
 
-        
-        private static int retornaQtdClientesMaisDezoito() {
-		int qtdClientesMaisDezoito = 0;
+    private static void buscarDescProducao() {
+        System.out.println("Para realizar uma busca de produtos, digite pelo menos o inicio de sua descricao: ");
+        String produtoIniciais = scan.nextLine();
 
-		for (Cliente c : cadastroClientes) {
-			if (c.getIdade() > 18) {
-				qtdClientesMaisDezoito++;
-			}
-		}
-
-		return qtdClientesMaisDezoito;
-	}
-        private static void exibirClienteMaisNovo() {
-		Cliente clienteMaisNovo = cadastroClientes.get(0);
-		for (Cliente c : cadastroClientes) {
-			if (clienteMaisNovo.getIdade() > c.getIdade()) {
-				clienteMaisNovo = c;
-			}
-		}
-		clienteMaisNovo.exibir();
-	}
-
-	private static void exibirClienteMaisVelho() {
-		Cliente clienteMaisVelho = cadastroClientes.get(0);
-		for (Cliente c : cadastroClientes) {
-			if (clienteMaisVelho.getIdade() < c.getIdade()) {
-				clienteMaisVelho = c;
-			}
-		}
-		clienteMaisVelho.exibir();
-	}
-private static void exibirPrdtsAcimaMediaPreco() {
-		for (Produto p : cadastroProdutos) {
-			if (p.getPreco() > retornaMediaPrecos()) {
-				p.exibir();
-			}
-		}
-
-	}
-
-	private static double retornaMediaPrecos() {
-		double mediaPrecos = 0;
-
-		for (Produto p : cadastroProdutos) {
-			mediaPrecos += p.getPreco();
-		}
-
-		mediaPrecos = mediaPrecos / cadastroClientes.size();
-		return mediaPrecos;
-	}
-
-	private static void imprimeProdutoBarato() {
-		Produto prodMaisBarato = cadastroProdutos.get(0);
-		for (Produto p : cadastroProdutos) {
-			if (prodMaisBarato.getPreco() > p.getPreco()) {
-				prodMaisBarato = p;
-			}
-		}
-		prodMaisBarato.exibir();
-	}
-
-	private static void imprimeProdutoCaro() {
-		Produto prodMaisCaro = new Produto();
-		for (Produto p : cadastroProdutos) {
-			if (prodMaisCaro.getPreco() < p.getPreco()) {
-				prodMaisCaro = p;
-			}
-		}
-		prodMaisCaro.exibir();
-	}
+        for (Produto p : prodArray) {
+            if (p.getDescricao().startsWith(produtoIniciais)) {
+                p.exibir();
+            }
+        }
     }
-    private static void exibirListaClientes() {
-		for (Cliente c : cadastroClientes) {
-			c.exibir();
-                        System.out.print("Número do Cliente: " + cadastroClientes.indexOf(c) + "\n");
-		}
-	}
+
+    private static void buscarCodProduto() {
+        System.out.println("Para realizar a busca digite o codigo do produto: ");
+        double prodCodigo;
+        prodCodigo = scan.nextDouble();
+
+        for (Produto p : prodArray) {
+            if (p.getCodigo() == prodCodigo) {
+                p.exibir();
+            }
+        }
+    }
+
+    private static int MediaIdade() {
+        int mediaIdade = 0;
+
+        for (Cliente c : cliArray) {
+            mediaIdade += c.getIdade();
+        }
+        mediaIdade = mediaIdade / cliArray.size();
+        return mediaIdade;
+    }
+
+    private static int maisSessenta() {
+        int CliMaisSessenta = 0;
+
+        for (Cliente c : cliArray) {
+            if (c.getIdade() > 60) {
+                CliMaisSessenta++;
+            }
+        }
+        return CliMaisSessenta;
+    }
+
+    private static int CliMenorDezoito() {
+        int CliMaisDezoito = 0;
+
+        for (Cliente c : cliArray) {
+            if (c.getIdade() > 18) {
+                CliMaisDezoito++;
+            }
+        }
+
+        return CliMaisDezoito;
+    }
+
+    private static void CliMaisNovo() {
+        Cliente clienteMaisNovo = cliArray.get(0);
+        for (Cliente c : cliArray) {
+            if (clienteMaisNovo.getIdade() > c.getIdade()) {
+                clienteMaisNovo = c;
+            }
+        }
+        clienteMaisNovo.exibir();
+    }
+
+    private static void CliMaisVelho() {
+        Cliente clienteMaisVelho = cliArray.get(0);
+        for (Cliente c : cliArray) {
+            if (clienteMaisVelho.getIdade() < c.getIdade()) {
+                clienteMaisVelho = c;
+            }
+        }
+        clienteMaisVelho.exibir();
+    }
+
+    private static void ProdAcimaMediaPreco() {
+        for (Produto p : prodArray) {
+            if (p.getPreco() > MediaPrecos()) {
+                p.exibir();
+            }
+        }
+
+    }
+
+    private static double MediaPrecos() {
+        double mediaPrecos = 0;
+
+        for (Produto p : prodArray) {
+            mediaPrecos += p.getPreco();
+        }
+
+        mediaPrecos = mediaPrecos / prodArray.size();
+        return mediaPrecos;
+    }
+
+    private static void ProdutoBarato() {
+        Produto prodMaisBarato = prodArray.get(0);
+        for (Produto p : prodArray) {
+            if (prodMaisBarato.getPreco() > p.getPreco()) {
+                prodMaisBarato = p;
+            }
+        }
+        prodMaisBarato.exibir();
+    }
+
+    private static void ProdutoCaro() {
+        Produto prodMaisCaro = new Produto();
+        for (Produto p : prodArray) {
+            if (prodMaisCaro.getPreco() < p.getPreco()) {
+                prodMaisCaro = p;
+            }
+        }
+        prodMaisCaro.exibir();
+    }
+
+    private static void ListaClientes() {
+        for (Cliente c : cliArray) {
+            c.exibir();
+            System.out.print("Número do Cliente: " + prodArray.indexOf(c) + "\n");
+        }
+    }
 
     public static void main(String[] args) {
-
+      menu();
     }
 
 }
