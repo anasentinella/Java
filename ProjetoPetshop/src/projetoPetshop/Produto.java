@@ -10,19 +10,21 @@ package projetoPetshop;
  * @author aluno
  */
 class Produto {
- private int preco;
- private String descricao;
- private int codigo;
+ private double preco;.
+ private String descricao;.
+ private int codigo;.
+ private String tipo;.
+ private int datacomp;
 
     public Produto() {
         this.preco = 0;
     }
  
-    public int getPreco() {
+    public double getPreco() {
         return preco;
     }
 
-    public void setPreco(int preco) {
+    public void setPreco(double preco) {
         if (preco < 1) {
             throw new IllegalArgumentException("Preco inválido para o cadasto ...");
         }
@@ -47,6 +49,22 @@ class Produto {
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getDatacomp() {
+        return datacomp;
+    }
+
+    public void setDatacomp(int datacomp) {
+        this.datacomp = datacomp;
     }
 
 }

@@ -17,7 +17,7 @@ public class Funcionario extends Pessoa implements IPessoa {
     private String email;
     private int ctps;
     private String nome;
-    private int idade; 
+    private int idade;
     
 
     public Funcionario() {
@@ -26,18 +26,22 @@ public class Funcionario extends Pessoa implements IPessoa {
         
 	}
     
+    @Override
     public String getNome() {
         return nome;
     }
     
+    @Override
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    @Override
     public int getIdade() {
         return idade;
     }
     
+    @Override
     public void setIdade(int idade) {
         if (idade < 1) {
             throw new IllegalArgumentException("Idade inválida para o cadastro ...");
@@ -69,7 +73,7 @@ public class Funcionario extends Pessoa implements IPessoa {
 
     public void setSalario(double salario) {
         if (salario < 0) {
-            throw new IllegalArgumentException("Salario  inválida para o cadastro ...");
+            throw new IllegalArgumentException("Salario  inválido para o cadastro ...");
         }
         else{
             this.salario=salario;
@@ -94,8 +98,8 @@ public class Funcionario extends Pessoa implements IPessoa {
 
     @Override
     public void exibir() {
-       System.out.printf("Salario: %if |cargaH : %d | cargo: %s | Email: %s | ctps: %d\n",
-       getSalario(),getCargaH(),getCargo(),getEmail(),getCtps());  
+       System.out.printf("Nome %s| Idade %d| Salario: %if |cargaH : %d | cargo: %s | Email: %s | ctps: %d\n",
+       getNome(),getIdade(),getSalario(),getCargaH(),getCargo(),getEmail(),getCtps());  
        
     }
 }

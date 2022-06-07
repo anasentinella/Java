@@ -32,19 +32,17 @@ public class Projetojava {
         System.out.println("--------------------");
         System.out.println("Escolha o item que deseja selecionar: ");
 
-        int i = new input.NextInt();
+        int i = new scan.NextInt();
 
         switch (i) {
             case 1:
-                cadastrarCliente();
+                cadastrarCliente.add(AdicionaCliente());
                 break;
             case 2:
-                cadastrarFuncionario()
-                );
+                cadastrarFuncionario.add(AdicionaFuncionario());
                 break;
             case 3:
-                cadastrarProduto()
-                );
+                cadastrarProduto.add(AdicionaProduto());
                 break;
             case 4:
                 BuscaCliente();
@@ -92,140 +90,168 @@ public class Projetojava {
         productArray = new ArrayList();
     }
 
-    private void cadastrarCliente() {
-        Cliente novoCliente = new Cliente();
-
-        System.out.println("Digite o nome do Cliente: ");
-        novoCliente.setNome(input.next());
-        input.nextLine();
-
-        while (novoCliente.getIdade() < 1) {
+  
+        public static Cliente AdicionaCliente() {
+		// add cliente
+		Cliente novoCli = new Cliente();
+        
+        System.out.println("Digite o nome do Cliente: \n");
+        novoCli.setTutorAnimal(scan.next());
+        scan.nextLine();
+        
+        while (novoCli.getIdade() < 1) {
             try {
-                System.out.println("Digite a idade do cliente: ");
-                novoCliente.setIdade(input.nextInt());
+                System.out.println("Digite a idade do cliente: \n");
+                novoCli.setIdade(scan.nextInt());
             } catch (IllegalArgumentException e) {
-                System.out.println("Idade de cliente invÃ¡lida...");
+                System.out.println("Idade do cliente não pode ser cadastrada...\n");
             } catch (InputMismatchException e) {
                 System.out.println("Tipo de idade invalida...");
-                input.nextLine();
+                scan.nextLine();
             }
         }
 
-        while (novoCliente.getTelefone() < 0) {
+        while (novoCli.getTelefone() < 0) {
             try {
-                System.out.print("Digite o telefone do Cliente: \n");
-                novoCliente.setTelefone(input.nextInt());
+                System.out.print("Digite o numero de telefone do Cliente: \n");
+                novoCli.setTelefone(scan.nextInt());
             } catch (IllegalArgumentException e) {
-                System.out.println("Valor de telefone invalido... ");
+                System.out.println("Valor de telefone digitado e invalido... ");
             } catch (InputMismatchException e) {
                 System.out.println("Tipo de telefone invalido... ");
-                input.nextLine();
+                scan.nextLine();
             }
         }
 
-        System.out.print("Digite a flor favorita do Cliente: \n");
-        novoCliente.(input.next());
-        input.nextLine();
+        System.out.print("Digite o endereco do Cliente: \n");
+        novoCli.setEndereco(scan.next());
+        scan.nextLine();
+        
+        System.out.print("Digite o nome do Animal do Cliente: \n");
+        novoCli.setNomeA(scan.next());
+        scan.nextLine();
 
-        System.out.println("Digite o email do Cliente: ");
-        novoCliente.setEmail(input.next());
-
-        // retorna array
-        return cadastrarCliente;
-    }
-
-    private static void cadastrarFuncionario() {
-        Funcionario novoFuncionario = new Funcionario();
-
-        System.out.println("Digite o nome do funcionario: ");
-        novoFuncionario.setNome(scanUsuario.next());
-        scanUsuario.nextLine();
-
-        while (novoFuncionario.getIdade() < 1) {
+        while (novoCli.getIdadeAnim() < 1) {
             try {
-                System.out.println("Digite a idade do funcionario: ");
-                novoFuncionario.setIdade(scanUsuario.nextInt());
+                System.out.println("Digite a idade do Animal:  \n");
+                novoCli.setIdadeAnim(scan.nextInt());
             } catch (IllegalArgumentException e) {
-                System.out.println("Idade InvÃ¡lida...");
+                System.out.println("Idade do animal não pode ser cadastrada...\n");
             } catch (InputMismatchException e) {
-                System.out.println("Tipo de idade inválida... ");
-                scanUsuario.nextLine();
-                novoFuncionario.setIdade(0);
+                System.out.println("Tipo de idade invalida...");
+                scan.nextLine();
+            }
+        }
+        
+        System.out.println("Digite a raca do Animal: \n");
+        novoCli.setRaca(scan.next());
+        scan.nextLine();
+        
+        System.out.println("Digite a cor do Animal: \n");
+        novoCli.setCor(scan.next());
+        scan.nextLine();
+        
+        while (novoCli.getPeso() < 0) {
+            try {
+                System.out.println("Digite o peso do Animal:  \n");
+                novoCli.setPeso(scan.nextFloat());
+            } catch (IllegalArgumentException e) {
+                System.out.println("O peso do animal não pode ser cadastrado...\n");
+            } catch (InputMismatchException e) {
+                System.out.println("Tipo de peso invalido...");
+                scan.nextLine();
             }
         }
 
-        System.out.println("Digite o cargo do funcionÃ¡rio: ");
-        novoFuncionario.setCargo(scanUsuario.next());
-        scanUsuario.nextLine();
+        return novoCli; 
+                
+    }
+        //-----------Cadastrar Funcionário--------------
+ 
 
-        while (novoFuncionario.getSalario() < 0) {
+    private static  Funcionario AdicionaFuncionario() {
+        Funcionario novoFunc = new Funcionario();
+
+        System.out.println("Digite o nome do Funcionario: \n");
+        novoFunc.setNome(scan.next());
+        scan.nextLine();
+
+        while (novoFunc.getIdade() < 1) {
             try {
-                System.out.println("Digite o salario do funcionario: ");
-                novoFuncionario.setSalario(scanUsuario.nextDouble());
+                System.out.println("Digite a idade do Funcionario: \n");
+                novoFunc.setIdade(scan.nextInt());
             } catch (IllegalArgumentException e) {
-                System.out.println("Salario de funcionario invalido...");
+                System.out.println("Idade do cliente não pode ser cadastrada...\n");
+            } catch (InputMismatchException e) {
+                System.out.println("Tipo de idade inválida... \n");
+                scan.nextLine();
+                novoFunc.setIdade(0);
+            }
+        }
+
+        System.out.println("Digite o cargo do Funcionario: \n");
+        novoFunc.setCargo(scan.next());
+        scan.nextLine();
+        
+        System.out.println("Digite o email do Funcionario: \n");
+        novoFunc.setEmail(scan.next());
+        scan.nextLine();
+        
+        
+        while (novoFunc.getSalario() < 0) {
+            try {
+                System.out.println("Digite o salario do funcionario: \n");
+                novoFunc.setSalario(scan.nextDouble());
+            } catch (IllegalArgumentException e) {
+                System.out.println("O salario d funcionario cadastrado e invalido...");
             } catch (InputMismatchException e) {
                 System.out.println("Tipo de salario invalido... ");
             }
         }
 
-        System.out.println("Digite a quantidade de horas semanais do funcionario: ");
-        novoFuncionario.setHorasSemanais(scanUsuario.nextInt());
+        System.out.println("Digite a carga horaria semanal do Funcionario: \n");
+        novoFunc.setCargaH(scan.nextInt());
+        
+        System.out.println("Digite o codigo da carteira de trabalho do Funcionario: \n");
+        novoFunc.setCtps(scan.nextInt());
+        
+        
 
-        return novoFuncionario;
+        return novoFunc;
     }
 
 }
+        //------------------Cadastrar Produto----------------------------//
 
-                private static Produto criarProduto() {
-		Produto novoProduto = new Produto();
+        private static Produto AdicinaProduto() {
+        Produto novoProd = new Produto();
 
-		System.out.println("Digite a descricao da planta: ");
-		novoProduto.setDescricao(scanUsuario.next());
+        System.out.println("Digite o tipo do produto (E industrial ou um servico do Petshop): \n");
+        novoProd.setTipo(scan.next());
+        scan.nextLine();
 
-		scanUsuario.nextLine();
+        System.out.println("Digite a descricao (nome) do Produto: \n");
+        novoProd.setDescricao(scan.next());
+        scan.nextLine();
 
-		while (novoProduto.getPreco() < 1) {
-			
-			try {
-				System.out.println("Digite o preco da planta: ");
-				novoProduto.setPreco(scanUsuario.nextDouble());
-			} catch (IllegalArgumentException e) {
-				System.out.println("Preco invalido... ");
-			} catch (InputMismatchException e) {
-				System.out.println("Tipo de preço inválido... ");
-				input.nextLine();
-			}
-		}
+        System.out.println("Digite o codigo do produto: \n");
+        novoProd.setCodigo(scan.nextInt());
+	
+        while (novoProd.getPreco() < 1) {
+            try {
+                System.out.println("Digite o preco do Produto: \n");
+                novoFunc.setPreco(scan.nextDouble());
+            } catch (IllegalArgumentException e) {
+                System.out.println("Preco inserido não pode ser cadastrado...\n");
+            } catch (InputMismatchException e) {
+                System.out.println("Tipo de preco inválido... \n");
+                scan.nextLine();
+            }
+        }
 
-		while (novoProduto.getPeso() < 1) {
-			try {
-				System.out.println("Digite o peso da planta: ");
-				novoProduto.setPeso(scanUsuario.nextDouble());
-			} catch (IllegalArgumentException e) {
-				System.out.println("Preco invalido... ");
-			} catch (InputMismatchException e) {
-				System.out.println("Tipo de preco invalido...");
-				scanUsuario.nextLine();
-			}
-		}
+        System.out.println("Digite a data de compra do produto: \n");
+        novoProd.setDatacomp(scan.nextInt());
 
-		while (novoProduto.getAltura() < 1) {
-			try {
-				System.out.println("Digite a altura da planta: ");
-				novoProduto.setAltura(scanUsuario.nextDouble());
-			} catch (IllegalArgumentException e) {
-				System.out.println("Altura invalida... ");
-			} catch (InputMismatchException e) {
-				System.out.println("Tipo de altura invalida... ");
-				scanUsuario.nextLine();
-			}
-		}
-
-		System.out.println("Digite a especie da planta... ");
-		novoProduto.setEspecie(scanUsuario.next());
-
-		scanUsuario.nextLine();
 
 		return novoProduto;
 	}
