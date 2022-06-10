@@ -22,6 +22,12 @@ public class Cliente extends Pessoa  implements IPessoa {
     private int idade;
     private int idadeAnim;
 
+   
+    public Cliente() {
+    this.peso= -1;
+    this.telefone= -1;
+    }
+
     public String getTutorAnimal() {
         return tutorAnimal;
     }
@@ -87,18 +93,7 @@ public class Cliente extends Pessoa  implements IPessoa {
         }
     }
 
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        if (idade < 1) {
-            throw new IllegalArgumentException("Idade inválida para o cadastro ...");
-        }
-        else{
-            this.idade=idade;
-        }
-    }
+   
 
     public int getIdadeAnim() {
         return idadeAnim;
@@ -115,10 +110,23 @@ public class Cliente extends Pessoa  implements IPessoa {
 
     @Override
     public void exibir() {
-         System.out.printf("TutorAnimal: %s | Endereco: %s | Telefone: %d | NomeA: %s | raca: %d "
-                 + "|Cor %s| Peso %d | Idade %d| idadeAnim %d\n",
-                 getTutorAnimal(),getEndereco(),getTelefone(),getNomeA(),getRaca(),getCor(),getPeso(),
-                 getIdade(),getIdadeAnim());
-
+         System.out.println("tutor: " + this.tutorAnimal + " Idade: " + this.idade + " endereco: " + this.endereco + " Telefone: " + this.telefone + " Nome do animal: " + this.nomeA +
+               " Raça: " + this.raca + " Cor: " + this.cor + " Peso: " + this.peso + " Idade do animal: " + this.idadeAnim) ;
     }
+
+  
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        if (idade < 1) {
+            throw new IllegalArgumentException("Idade inválida para o cadastro ...");
+        }
+        else{
+            this.idade=idade;
+        }
+    }
+    
 }

@@ -16,40 +16,7 @@ public class Funcionario extends Pessoa implements IPessoa {
     private String cargo;
     private String email;
     private int ctps;
-    private String nome;
     private int idade;
-    
-
-    public Funcionario() {
-        this.idade = 0;
-        this.salario = -1;
-        
-	}
-    
-    @Override
-    public String getNome() {
-        return nome;
-    }
-    
-    @Override
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    @Override
-    public int getIdade() {
-        return idade;
-    }
-    
-    @Override
-    public void setIdade(int idade) {
-        if (idade < 1) {
-            throw new IllegalArgumentException("Idade inválida para o cadastro ...");
-        }
-        else{
-            this.idade=idade;
-        }
-    }
     
     public String getEmail() {
         return email;
@@ -74,9 +41,20 @@ public class Funcionario extends Pessoa implements IPessoa {
     public void setSalario(double salario) {
         if (salario < 0) {
             throw new IllegalArgumentException("Salario  inválido para o cadastro ...");
+        } else {
+            this.salario = salario;
         }
-        else{
-            this.salario=salario;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        if (idade < 1) {
+            throw new IllegalArgumentException("Idade inválida para o cadastro ...");
+        } else {
+            this.idade = idade;
         }
     }
 
@@ -91,15 +69,15 @@ public class Funcionario extends Pessoa implements IPessoa {
     public String getCargo() {
         return cargo;
     }
-   
+
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
 
     @Override
     public void exibir() {
-       System.out.printf("Nome %s| Idade %d| Salario: %if |cargaH : %d | cargo: %s | Email: %s | ctps: %d\n",
-       getNome(),getIdade(),getSalario(),getCargaH(),getCargo(),getEmail(),getCtps());  
-       
+        System.out.printf("Nome %s| Idade %d| Salario: %if |cargaH : %d | cargo: %s | Email: %s | ctps: %d\n",
+                getNome(), getIdade(), getSalario(), getCargaH(), getCargo(), getEmail(), getCtps());
+
     }
 }

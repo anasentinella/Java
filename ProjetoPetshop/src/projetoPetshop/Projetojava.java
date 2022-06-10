@@ -11,9 +11,10 @@ import java.util.Scanner;
 
 public class Projetojava {
 
-    private static ArrayList<Cliente> cliArray;
-    private static ArrayList<Funcionario> funcArray;
-    private static ArrayList<Produto> prodArray;
+
+private static ArrayList<Cliente> cliArray = new ArrayList<Cliente>();
+    private static ArrayList<Funcionario> funcArray= new ArrayList<Funcionario>();
+    private static ArrayList<Produto> prodArray= new ArrayList<Produto>();
     private static final Scanner scan = new Scanner(System.in);
 
     Scanner menu = new Scanner(System.in);
@@ -28,7 +29,7 @@ public class Projetojava {
         System.out.println("7-Cliente mais velho\n" + "8-Cliente mais jovem\n" + "9- Quantidade de Clientes maiores que 60 anos\n " + "10- Quantidade de Clientes menores que 18 anos \n"
                 + "11-Idade media dos Clientes");
         System.out.println("--------------------");
-        System.out.println("12-Produto mais caro\n" + "13-Produto mais barato\n" + "14-Media dos preços do Produtos\n" + "15-Media dos produtos com precos ácima da média\n" + "16-Sair");
+        System.out.println("12-Produto mais caro\n" + "13-Produto mais barato\n" + "14-Media dos preços do Produtos\n" + "15-Media dos produtos com precos ácima da média\n" + "16-Lista de Clientes");
         System.out.println("--------------------");
         System.out.println("Escolha o item que deseja selecionar: ");
 
@@ -36,52 +37,68 @@ public class Projetojava {
 
         switch (i) {
             case 1:
-                cliArray.add(AdicionaCliente());
-                break;
+               cliArray.add(AdicionaCliente());
+                menu();
+               break;
             case 2:
                 funcArray.add(AdicionaFuncionario());
+                menu();
                 break;
             case 3:
                 prodArray.add(AdicionaProduto());
+                menu();
                 break;
             case 4:
                 buscarCliente();
+                menu();
                 break;
             case 5:
                 BuscaFuncionario();
+                menu();
                 break;
             case 6:
                 buscaProduto();
+                menu();
                 break;
             case 7:
                 CliMaisVelho();
+                menu();
                 break;
             case 8:
                 CliMaisNovo();
+                menu();
                 break;
             case 9:
                 maisSessenta();
+                menu();
                 break;
             case 10:
                 CliMenorDezoito();
+                menu();
                 break;
             case 11:
                 MediaIdade();
+                menu();
                 break;
             case 12:
                 ProdutoCaro();
+                menu();
                 break;
             case 13:
                 ProdutoBarato();
+                menu();
                 break;
             case 14:
                 MediaPrecos();
+                menu();
                 break;
             case 15:
                 ProdAcimaMediaPreco();
+                menu();
                 break;
             case 16:
                 ListaClientes();
+                menu();
                 break;
         }
 
@@ -118,7 +135,7 @@ public class Projetojava {
                 System.out.print("Digite o numero de telefone do Cliente: \n");
                 novoCli.setTelefone(scan.nextInt());
             } catch (IllegalArgumentException e) {
-                System.out.println("Valor de telefone digitado e invalido... ");
+                System.out.println("Valor de telefone digitado é invalido... ");
             } catch (InputMismatchException e) {
                 System.out.println("Tipo de telefone invalido... ");
                 scan.nextLine();
@@ -145,7 +162,7 @@ public class Projetojava {
             }
         }
 
-        System.out.println("Digite a raca do Animal: \n");
+        System.out.println("Digite a raça do Animal: \n");
         novoCli.setRaca(scan.next());
         scan.nextLine();
 
@@ -165,8 +182,8 @@ public class Projetojava {
             }
         }
 
-        return novoCli;
-
+      
+      return novoCli;
     }
 
     private static Funcionario AdicionaFuncionario() {
@@ -423,9 +440,10 @@ public class Projetojava {
     }
 
     private static void ListaClientes() {
-        for (Cliente c : cliArray) {
-            c.exibir();
-            System.out.print("Número do Cliente: " + prodArray.indexOf(c) + "\n");
+        for (Cliente cli : cliArray) {
+            cli.exibir();
+            
+            System.out.print("Número do Cliente: " + cliArray.indexOf(cli) + "\n");
         }
     }
 

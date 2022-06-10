@@ -11,28 +11,16 @@ package projetoPetshop;
  */
 public abstract class Pessoa {
     private String nome;
-    private int idade;
     private int cpf;
 
+   
+    
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        if (idade < 1) {
-            throw new IllegalArgumentException("Idade inválida para o cadastro ...");
-        }
-        else{
-            this.idade=idade;
-        }
     }
 
     public int getCpf() {
