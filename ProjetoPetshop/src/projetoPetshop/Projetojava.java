@@ -11,10 +11,9 @@ import java.util.Scanner;
 
 public class Projetojava {
 
-
-private static ArrayList<Cliente> cliArray = new ArrayList<Cliente>();
-    private static ArrayList<Funcionario> funcArray= new ArrayList<Funcionario>();
-    private static ArrayList<Produto> prodArray= new ArrayList<Produto>();
+    private static ArrayList<Cliente> cliArray = new ArrayList<Cliente>();
+    private static ArrayList<Funcionario> funcArray = new ArrayList<Funcionario>();
+    private static ArrayList<Produto> prodArray = new ArrayList<Produto>();
     private static final Scanner scan = new Scanner(System.in);
 
     Scanner menu = new Scanner(System.in);
@@ -22,14 +21,18 @@ private static ArrayList<Cliente> cliArray = new ArrayList<Cliente>();
     public static void menu() {
         System.out.println(" Menu Petshop: ");
         System.out.println("-------------------");
-        System.out.println("1 - Cadastro de Clientes\n" + "2- Cadastro de Funcionarios\n" + "3-Cadastro de Produtos");
+        System.out.println("1-Cadastro de Clientes\n" + "2-Cadastro de Funcionarios\n" + "3-Cadastro de Produtos");
         System.out.println("--------------------");
-        System.out.println("4-Busca por Clientes\n" + "5-Busca por Funcionarios\n" + "6-Busca por Produtos");
+        System.out.println("4-Excluir Cliente: \n" + "5-Exclusão de Funcionario: \n" + "6-Exclusão de Produtos: ");
+        System.out.println("-------------------");
+        System.out.println("7-Busca por Clientes\n" + "8-Busca por Funcionarios\n" + "9-Busca por Produtos");
         System.out.println("--------------------");
-        System.out.println("7-Cliente mais velho\n" + "8-Cliente mais jovem\n" + "9- Quantidade de Clientes maiores que 60 anos\n " + "10- Quantidade de Clientes menores que 18 anos \n"
-                + "11-Idade media dos Clientes");
+        System.out.println("10-Cliente mais velho\n" + "11-Cliente mais jovem\n" + "12- Quantidade de Clientes maiores que 60 anos\n " + "13- Quantidade de Clientes menores que 18 anos \n"
+                + "14-Idade media dos Clientes");
         System.out.println("--------------------");
-        System.out.println("12-Produto mais caro\n" + "13-Produto mais barato\n" + "14-Media dos preços do Produtos\n" + "15-Media dos produtos com precos ácima da média\n" + "16-Lista de Clientes");
+        System.out.println("15-Produto mais caro\n" + "16-Produto mais barato\n" + "17-Media dos preços do Produtos\n" + "18-Media dos produtos com precos ácima da média");
+        System.out.println("--------------------");
+        System.out.println("19-Lista de Clientes:\n " + "20-Lista de funcionarios: \n" + "21-Lista de Produtos: ");
         System.out.println("--------------------");
         System.out.println("Escolha o item que deseja selecionar: ");
 
@@ -37,67 +40,105 @@ private static ArrayList<Cliente> cliArray = new ArrayList<Cliente>();
 
         switch (i) {
             case 1:
-               cliArray.add(AdicionaCliente());
+                System.out.println("Novo cadstro de Cliente: \n");
+                cliArray.add(AdicionaCliente());
                 menu();
-               break;
+                break;
             case 2:
+                System.out.println("Novo cadstro de Funcionario: \n");
                 funcArray.add(AdicionaFuncionario());
                 menu();
                 break;
             case 3:
+                System.out.println("Novo cadstro de Produto: \n");
                 prodArray.add(AdicionaProduto());
                 menu();
                 break;
             case 4:
-                buscarCliente();
+                System.out.println("Exclusão de Cliente: ");
+                excluirCliente();
                 menu();
                 break;
             case 5:
-                BuscaFuncionario();
+                System.out.println("Exclusão de Funcionario: ");
+                excluirFuncionario();
                 menu();
                 break;
             case 6:
-                buscaProduto();
+                System.out.println("Exclusão de Produto: ");
+                excluirProduto();
                 menu();
                 break;
             case 7:
-                CliMaisVelho();
+                System.out.println("Busca de Cliente: ");
+                buscaCliente();
                 menu();
                 break;
             case 8:
-                CliMaisNovo();
+                System.out.println("Busca de Funcionario: ");
+                BuscaFuncionario();
                 menu();
                 break;
             case 9:
-                maisSessenta();
+                System.out.println("Busca de Produto: ");
+                buscaProduto();
                 menu();
                 break;
             case 10:
-                CliMenorDezoito();
+                System.out.println("Cliente mais Velho: ");
+                CliMaisVelho();
                 menu();
                 break;
             case 11:
-                MediaIdade();
+                System.out.println("Cliente mais Novo: ");
+                CliMaisNovo();
                 menu();
                 break;
             case 12:
-                ProdutoCaro();
+                System.out.println("Clientes com mais de 60 anos: "+ maisSessenta());
                 menu();
                 break;
             case 13:
-                ProdutoBarato();
+                System.out.println("Clientes com menos de 18 anos: "+ CliMenorDezoito());
                 menu();
                 break;
             case 14:
-                MediaPrecos();
+                System.out.println("Media das idades dos Clientes: " + MediaIdade());
                 menu();
                 break;
             case 15:
-                ProdAcimaMediaPreco();
+                System.out.println("Produto mais Caro: ");
+                ProdutoCaro();
                 menu();
                 break;
             case 16:
-                ListaClientes();
+                System.out.println("Produto mais Barato: ");
+                ProdutoBarato();
+                menu();
+                break;
+            case 17:
+                System.out.println("Média dos preços dos Produtos: " + MediaPrecos());
+                menu();
+                break;
+            case 18:
+                System.out.println("Produtos com preço acima da média: ");
+                ProdAcimaMediaPreco();
+                menu();
+                break;
+            case 19:
+                System.out.println("Lista de Clientes: ");
+                ListaDeClientes();
+                menu();
+                break;
+            case 20:
+                System.out.println("Lista de Funcionarios: ");
+                ListaDeFuncionarios();
+                menu();
+                break;
+
+            case 21:
+                System.out.println("Lista de produtos: ");
+                ListaDeProdutos();
                 menu();
                 break;
         }
@@ -182,8 +223,51 @@ private static ArrayList<Cliente> cliArray = new ArrayList<Cliente>();
             }
         }
 
-      
-      return novoCli;
+        return novoCli;
+    }
+
+    public static void excluirCliente() {
+
+        boolean found = false;
+        System.out.println("\nQual o nome do animal do cliente a ser removido?");
+        String value = scan.next();
+        for (Cliente c : cliArray) {  
+            if (c.getNomeA() == value) {
+                cliArray.remove(c);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("\nNenhum cliente encontrado. Deseja reiniciar a operação? 1 = Sim; 2 = Não");
+            int s = scan.nextInt();
+            switch (s) {
+                case 1:
+                    excluirCliente();
+                    break;
+                case 2:
+                    menu();
+                    break;
+                default:
+                    System.out.println("\nNão é uma entrada válida. Voltando ao menu.");
+                    menu();
+                    break;
+            }
+        }
+        System.out.println("\nOperação Finalizada. Deseja remover mais algum cliente? 1 = Sim; 2 = Não");
+        int a = scan.nextInt();
+        switch (a) {
+            case 1:
+                excluirCliente();
+                break;
+            case 2:
+                menu();
+                break;
+            default:
+                System.out.println("\nNão é uma entrada válida. Por padrão, voltando ao menu.");
+                menu();
+                break;
+        }
     }
 
     private static Funcionario AdicionaFuncionario() {
@@ -234,6 +318,49 @@ private static ArrayList<Cliente> cliArray = new ArrayList<Cliente>();
         return novoFunc;
     }
 
+    public static void excluirFuncionario() {
+
+        boolean found = false;
+        System.out.println("\nQual o numero da carteira de trabalho do funcionário a ser removido?");
+        int value = scan.nextInt();
+        for (Funcionario func : funcArray) {
+            if (func.getCtps() == value) {
+                funcArray.remove(func);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("\nFuncionario não encontrado. Deseja retomar a operação? 1 = Sim; 2 = Não");
+            int s = scan.nextInt();
+            switch (s) {
+                case 1:
+                    excluirFuncionario();
+                    break;
+                case 2:
+                    menu();
+                    break;
+                default:
+                    System.out.println("\nNão é uma entrada válida. Voltando ao menu.");
+                    menu();
+            }
+        }
+        System.out.println("\nOperação Finalizada. Deseja apagar mais algum registro? 1 = Sim; 2 = Não");
+        int s = scan.nextInt();
+        switch (s) {
+            case 1:
+                excluirFuncionario();
+                break;
+            case 2:
+                menu();
+                break;
+            default:
+                System.out.println("\nNão é uma entrada válida. Por padrão, voltando ao menu.");
+                menu();
+                break;
+        }
+    }
+
     private static Produto AdicionaProduto() {
         Produto novoProd = new Produto();
 
@@ -261,20 +388,103 @@ private static ArrayList<Cliente> cliArray = new ArrayList<Cliente>();
         }
 
         System.out.println("Digite a data de compra do produto: \n");
-        novoProd.setDatacomp(scan.nextLine());
-
+        novoProd.setDatacomp(scan.next());
+        scan.nextLine();
         return novoProd;
     }
 
-    private static void buscarCliente() {
+    public static void excluirProduto() {
 
-        System.out.println("Para realizar a busca, digite, no minimo parte do nome do cliente: ");
-        String cliIniciais = scan.nextLine();
-        for (Cliente c : cliArray) {
-            if (c.getNome().startsWith(cliIniciais)) {
-                c.exibir();
+        boolean found = false;
+        System.out.println("\n Qual o codigo do produto a ser removido?");
+        int value = scan.nextInt();
+        for (Produto p : prodArray) {
+            if (p.getCodigo() == value) {
+                prodArray.remove(p);
+                found = true;
+                break;
             }
         }
+        if (!found) {
+            System.out.println("\nNenhum produto encontrado. Deseja reiniciar a operação? 1 = Sim; 2 = Não");
+            int s = scan.nextInt();
+            switch (s) {
+                case 1:
+                    excluirProduto();
+                    break;
+                case 2:
+                    menu();
+                    break;
+                default:
+                    System.out.println("\nNão é uma entrada válida. Voltando ao menu.");
+                    menu();
+                    break;
+            }
+        }
+        System.out.println("\nOperação Finalizada. Deseja remover mais algum produto? 1 = Sim; 2 = Não");
+        int a = scan.nextInt();
+        switch (a) {
+            case 1:
+                excluirProduto();
+                break;
+            case 2:
+                menu();
+                break;
+            default:
+                System.out.println("\nNão é uma entrada válida. Voltando ao menu.");
+                menu();
+                break;
+        }
+    }
+
+    public static void buscaCliente() {
+        limpaBuffer(scan);
+
+        boolean found = false;
+
+        System.out.println("\nDigite o nome  do cliente:");
+        String le = scan.next();
+
+        for (Cliente c : cliArray) {
+            if (c.getTutorAnimal().contains(le)) {
+                System.out.println("\nRegistro encontrado:");
+                c.exibir();
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            System.out.println("\nNenhum registro encontrado. Deseja reiniciar a operação ou sair? 1 = Reiniciar; 2 = Sair.");
+            int a = scan.nextInt();
+            switch (a) {
+                case 1:
+                    buscaCliente();
+                    break;
+                case 2:
+                    menu();
+                    break;
+                default:
+                    System.out.println("\nEntrada inválida. Por padrão, voltando ao menu.");
+                    menu();
+            }
+        }
+
+        System.out.println("\nOperação Finalizada. Deseja buscar mais algum cliente? 1 = Sim; 2 = Não");
+        int s = scan.nextInt();
+        switch (s) {
+            case 1:
+                buscaCliente();
+                break;
+            case 2:
+                menu();
+                break;
+            default:
+                System.out.println("\nNão é uma entrada válida. Por padrão, voltando ao menu.");
+                menu();
+                break;
+        }
+
     }
 
     private static void BuscaFuncionario() {
@@ -325,7 +535,7 @@ private static ArrayList<Cliente> cliArray = new ArrayList<Cliente>();
 
     private static void buscarDescProducao() {
         System.out.println("Para realizar uma busca de produtos, digite pelo menos o inicio de sua descricao: ");
-        String produtoIniciais = scan.nextLine();
+        String produtoIniciais = scan.next();
 
         for (Produto p : prodArray) {
             if (p.getDescricao().startsWith(produtoIniciais)) {
@@ -357,52 +567,57 @@ private static ArrayList<Cliente> cliArray = new ArrayList<Cliente>();
     }
 
     private static int maisSessenta() {
-        int CliMaisSessenta = 0;
+      int CliMaisSessenta = 0;
 
-        for (Cliente c : cliArray) {
-            if (c.getIdade() > 60) {
-                CliMaisSessenta++;
-            }
-        }
-        return CliMaisSessenta;
-    }
+		for (Cliente c : cliArray) {
+			if (c.getIdade() > 60) {
+				CliMaisSessenta++;
+			}
+		}
+		return CliMaisSessenta;
+	}
+    
 
     private static int CliMenorDezoito() {
-        int CliMaisDezoito = 0;
+      int CliMenorDezoito = 0;
 
-        for (Cliente c : cliArray) {
-            if (c.getIdade() > 18) {
-                CliMaisDezoito++;
-            }
-        }
+		for (Cliente c : cliArray) {
+			if (c.getIdade() > 18) {
+				CliMenorDezoito++;
+			}
+		}
 
-        return CliMaisDezoito;
-    }
+		return CliMenorDezoito;
+	}
 
     private static void CliMaisNovo() {
-        Cliente clienteMaisNovo = cliArray.get(0);
+        Cliente c1i;
+        c1i = cliArray.get(0);
+
         for (Cliente c : cliArray) {
-            if (clienteMaisNovo.getIdade() > c.getIdade()) {
-                clienteMaisNovo = c;
+            if (c1i.getIdade() > c.getIdade()) {
+                c1i = c;
             }
         }
-        clienteMaisNovo.exibir();
+
+        System.out.println("\nCliente mais novo :");
+        c1i.exibir();
     }
 
     private static void CliMaisVelho() {
-        Cliente clienteMaisVelho = cliArray.get(0);
+        Cliente cliMaisVelho = cliArray.get(0);
         for (Cliente c : cliArray) {
-            if (clienteMaisVelho.getIdade() < c.getIdade()) {
-                clienteMaisVelho = c;
+            if (cliMaisVelho.getIdade() < c.getIdade()) {
+                cliMaisVelho = c;
             }
         }
-        clienteMaisVelho.exibir();
+        cliMaisVelho.exibir();
     }
 
     private static void ProdAcimaMediaPreco() {
-        for (Produto p : prodArray) {
-            if (p.getPreco() > MediaPrecos()) {
-                p.exibir();
+        for (Produto prod : prodArray) {
+            if (prod.getPreco() > MediaPrecos()) {
+                prod.exibir();
             }
         }
 
@@ -410,9 +625,10 @@ private static ArrayList<Cliente> cliArray = new ArrayList<Cliente>();
 
     private static double MediaPrecos() {
         double mediaPrecos = 0;
-
-        for (Produto p : prodArray) {
-            mediaPrecos += p.getPreco();
+ 
+        
+        for (Produto prod : prodArray) { 
+            mediaPrecos += prod.getPreco();
         }
 
         mediaPrecos = mediaPrecos / prodArray.size();
@@ -439,16 +655,38 @@ private static ArrayList<Cliente> cliArray = new ArrayList<Cliente>();
         prodMaisCaro.exibir();
     }
 
-    private static void ListaClientes() {
+    private static void ListaDeClientes() {
         for (Cliente cli : cliArray) {
             cli.exibir();
-            
-            System.out.print("Número do Cliente: " + cliArray.indexOf(cli) + "\n");
+
+            System.out.println("Número do Cliente: " + cliArray.indexOf(cli));
+        }
+    }
+
+    private static void ListaDeFuncionarios() {
+        for (Funcionario func : funcArray) {
+            func.exibir();
+
+            System.out.println("Número do Funcinario: " + funcArray.indexOf(func));
+        }
+    }
+
+    private static void ListaDeProdutos() {
+        for (Produto prod : prodArray) {
+            prod.exibir();
+
+            System.out.println("Número do Produto: " + prodArray.indexOf(prod));
+        }
+    }
+
+    public static void limpaBuffer(Scanner scanner) {
+        if (scanner.hasNextLine()) {
+            scanner.nextLine();
         }
     }
 
     public static void main(String[] args) {
-      menu();
+        menu();
     }
 
 }

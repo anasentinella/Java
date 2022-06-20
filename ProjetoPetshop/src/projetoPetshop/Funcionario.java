@@ -76,8 +76,7 @@ public class Funcionario extends Pessoa implements IPessoa {
 
     @Override
     public void exibir() {
-        System.out.printf("Nome %s| Idade %d| Salario: %if |cargaH : %d | cargo: %s | Email: %s | ctps: %d\n",
-                getNome(), getIdade(), getSalario(), getCargaH(), getCargo(), getEmail(), getCtps());
-
+        System.out.println("Nome: " + this.nome + ", Cpf: " + this.cpf + ", Salario: " + this.salario + ", carga Horaria: " + this.cargaH + "Cargo: " + this.cargo +
+       "Email: " + this.email + "Numero da carteira de trabalo: " + this.ctps + "Idade: " +this.idade);
     }
 }

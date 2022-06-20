@@ -110,8 +110,8 @@ public class Cliente extends Pessoa  implements IPessoa {
 
     @Override
     public void exibir() {
-         System.out.println("tutor: " + this.tutorAnimal + " Idade: " + this.idade + " endereco: " + this.endereco + " Telefone: " + this.telefone + " Nome do animal: " + this.nomeA +
-               " Raça: " + this.raca + " Cor: " + this.cor + " Peso: " + this.peso + " Idade do animal: " + this.idadeAnim) ;
+         System.out.println("tutor: " + this.tutorAnimal + ", Idade: " + this.idade + ", endereco: " + this.endereco + ", Telefone: " + this.telefone + ", Nome do animal: " + this.nomeA +
+               ", Raça: " + this.raca + ", Cor: " + this.cor + ", Peso: " + this.peso + ", Idade do animal: " + this.idadeAnim) ;
     }
 
   

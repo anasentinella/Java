@@ -10,8 +10,8 @@ package projetoPetshop;
  * @author aluno
  */
 public abstract class Pessoa {
-    private String nome;
-    private int cpf;
+    String nome;
+    int cpf;
 
    
     

@@ -68,8 +68,8 @@ class Produto {
     }
 
     void exibir() {
-       System.out.printf("Preco %if| Descricao %s| Codigo: %d |Tipo : %s | DataComp: %d\n",
-       getPreco(),getPreco(),getDescricao(),getCodigo(),getTipo(),getDatacomp());  
+          System.out.println("Preço: " + this.preco + ",Descrição do produto: " + this.descricao +",Codigo do produto: " + this.codigo +
+                  ",Tipo do Produto: " + this.tipo);
     }
 
 }
