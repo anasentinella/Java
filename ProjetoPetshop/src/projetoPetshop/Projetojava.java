@@ -232,7 +232,7 @@ public class Projetojava {
         System.out.println("\nQual o nome do animal do cliente a ser removido?");
         String value = scan.next();
         for (Cliente c : cliArray) {  
-            if (c.getNomeA() == value) {
+            if (c.getNomeA().equals(value)) {
                 cliArray.remove(c);
                 found = true;
                 break;
@@ -240,6 +240,7 @@ public class Projetojava {
         }
         if (!found) {
             System.out.println("\nNenhum cliente encontrado. Deseja reiniciar a operação? 1 = Sim; 2 = Não");
+            
             int s = scan.nextInt();
             switch (s) {
                 case 1:
@@ -513,7 +514,7 @@ public class Projetojava {
                 buscarDescProducao();
                 break;
             case 3:
-                buscarDescProducao();
+                buscarCodProduto();
                 break;
             default:
                 System.out.println("Entrada inválida, por padrão, voltando ao menu.");
