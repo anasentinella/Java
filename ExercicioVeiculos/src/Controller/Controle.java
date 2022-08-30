@@ -6,6 +6,8 @@ package Controller;
 
 import com.sun.jdi.connect.spi.Connection;
 import static java.lang.System.exit;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
