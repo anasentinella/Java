@@ -6,7 +6,10 @@
 package View;
 
 import Controller.Controle;
-
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /**
  *
  * @author aluno
@@ -89,6 +92,11 @@ public class FrmMusica extends javax.swing.JFrame {
 
         btnExcluir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnBuscar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnBuscar.setText("Buscar");
@@ -203,18 +211,28 @@ public class FrmMusica extends javax.swing.JFrame {
       String nome = this.txtNome.getText();
       String compositor = this.txtCompositor.getText();
       String genero = this.txtGenero.getText();
-      int ano = Integer.parseInt(this.txtGenero.getText());
+      int ano = Integer.parseInt(this.txtAno.getText());
+      Mcontrole.CadastrarMusicas(nome, compositor, genero, ano);
       this.txtNome.setText("");
       this.txtCompositor.setText("");
       this.txtGenero.setText("");
       this.txtAno.setText("");
       this.txtNome.requestFocus();
-      
+
     }//GEN-LAST:event_bntCadastrarActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+      String nome = this.txtNome.getText();
+       try {
+           Mcontrole.ExcluirMusicas(nome);
+       } catch (SQLException ex) {
+           Logger.getLogger(FrmMusica.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments

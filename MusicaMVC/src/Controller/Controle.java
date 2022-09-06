@@ -17,8 +17,8 @@ import java.util.logging.Logger;
  */
 public class Controle {
      
-    public void CadastrarMusicas(){
-        Musicas m1 = new Musicas();
+    public void CadastrarMusicas(String nome,String compositor,String genero,int ano){
+        Musicas m1 = new Musicas(nome,compositor,genero,ano);
         MusicaDAO mdao= new MusicaDAO();
         try {
             mdao.CadastrarMusica(m1);
@@ -27,5 +27,9 @@ public class Controle {
         }
             
         
+    }
+    public void ExcluirMusicas(String nome) throws SQLException{
+        MusicaDAO mDao= new MusicaDAO();
+        mDao.Excluir(nome);
     }
 }

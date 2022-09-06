@@ -16,18 +16,30 @@ import java.sql.SQLException;
  * @author aluno
  */
 public class MusicaDAO {
+
     Connection con;
-    
-    public void CadastrarMusica(Musicas m1 ) throws SQLException {
-    con = new Conexao().getConnection();
-            String sql = "Insert into Musicas (Nome,Compositor,Genero,Ano de Lancamento) values (?,?,?,?)";
-            PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1, m1.getNome());
-            stmt.setString(2, m1.getCompostior());
-            stmt.setString(3, m1.getGenero());
-            stmt.setInt(4, m1.getAnoLanc());
-            stmt.execute();
-            stmt.close();
-            con.close();    
+
+    public void CadastrarMusica(Musicas m1) throws SQLException {
+        con = new Conexao().getConnection();
+        String sql = "Insert into Musicas (Nome,Compositor,Genero,AnoLancamento) values (?,?,?,?)";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1, m1.getNome());
+        stmt.setString(2, m1.getCompositor());
+        stmt.setString(3, m1.getGenero());
+        stmt.setInt(4, m1.getAnoLanc());
+        stmt.execute();
+        stmt.close();
+        con.close();
+    }
+
+    public void Excluir(String nome) throws SQLException {
+        con = new Conexao().getConnection();
+        String sql = "DELETE FROM Musicas WHERE Nome = ?";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1, nome);
+        stmt.execute();
+        stmt.close();
+        con.close();
+
     }
 }

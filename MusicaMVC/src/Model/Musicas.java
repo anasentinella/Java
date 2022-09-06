@@ -11,13 +11,13 @@ package Model;
  */
 public class Musicas {
    private String nome;
-   private String compostior;
+   private String compositor;
    private String genero;
    private int anoLanc;
 
     public Musicas(String nome, String compostior, String genero, int anoLanc) {
         this.nome = nome;
-        this.compostior = compostior;
+        this.compositor = compostior;
         this.genero = genero;
         this.anoLanc = anoLanc;
     }
@@ -33,12 +33,12 @@ public class Musicas {
         this.nome = nome;
     }
 
-    public String getCompostior() {
-        return compostior;
+    public String getCompositor() {
+        return compositor;
     }
 
-    public void setCompostior(String compostior) {
-        this.compostior = compostior;
+    public void setCompositor(String compostior) {
+        this.compositor = compostior;
     }
 
     public String getGenero() {
