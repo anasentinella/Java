@@ -7,7 +7,7 @@ package Model.Dao;
 
 import Conexao.Conexao;
 import Model.Musicas;
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -19,7 +19,7 @@ public class MusicaDAO {
 
     Connection con;
 
-    public void CadastrarMusica(Musicas m1) throws SQLException {
+    public void CadastrarMusica(Musicas m1) throws SQLException, ClassNotFoundException {
         con = new Conexao().getConnection();
         String sql = "Insert into Musicas (Nome,Compositor,Genero,AnoLancamento) values (?,?,?,?)";
         PreparedStatement stmt = con.prepareStatement(sql);
@@ -32,7 +32,7 @@ public class MusicaDAO {
         con.close();
     }
 
-    public void Excluir(String nome) throws SQLException {
+    public void Excluir(String nome) throws SQLException, ClassNotFoundException {
         con = new Conexao().getConnection();
         String sql = "DELETE FROM Musicas WHERE Nome = ?";
         PreparedStatement stmt = con.prepareStatement(sql);

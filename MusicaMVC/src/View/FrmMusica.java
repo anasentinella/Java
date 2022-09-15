@@ -10,12 +10,16 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 /**
  *
  * @author aluno
  */
 public class FrmMusica extends javax.swing.JFrame {
-   Controle Mcontrole;
+
+    Controle Mcontrole;
+
     /**
      * Creates new form FrmMusica
      */
@@ -208,16 +212,20 @@ public class FrmMusica extends javax.swing.JFrame {
     }//GEN-LAST:event_txtGeneroActionPerformed
 
     private void bntCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCadastrarActionPerformed
-      String nome = this.txtNome.getText();
-      String compositor = this.txtCompositor.getText();
-      String genero = this.txtGenero.getText();
-      int ano = Integer.parseInt(this.txtAno.getText());
-      Mcontrole.CadastrarMusicas(nome, compositor, genero, ano);
-      this.txtNome.setText("");
-      this.txtCompositor.setText("");
-      this.txtGenero.setText("");
-      this.txtAno.setText("");
-      this.txtNome.requestFocus();
+        String nome = this.txtNome.getText();
+        String compositor = this.txtCompositor.getText();
+        String genero = this.txtGenero.getText();
+        int ano = Integer.parseInt(this.txtAno.getText());
+        try {
+            Mcontrole.CadastrarMusicas(nome, compositor, genero, ano);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FrmMusica.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.txtNome.setText("");
+        this.txtCompositor.setText("");
+        this.txtGenero.setText("");
+        this.txtAno.setText("");
+        this.txtNome.requestFocus();
 
     }//GEN-LAST:event_bntCadastrarActionPerformed
 
@@ -226,12 +234,20 @@ public class FrmMusica extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-      String nome = this.txtNome.getText();
-       try {
-           Mcontrole.ExcluirMusicas(nome);
-       } catch (SQLException ex) {
-           Logger.getLogger(FrmMusica.class.getName()).log(Level.SEVERE, null, ex);
-       }
+        if (txtNome.getText().equals(""))
+            JOptionPane.showMessageDialog(null, "Preencha o campo código ao lado.");
+        else {
+            
+            int reply = JOptionPane.showConfirmDialog(null,
+                    "Deseja Excluir a música selecionada?" + txtNome + "?",
+                    "Aviso do Sistema!", JOptionPane.YES_NO_OPTION);
+            if (reply == JOptionPane.YES_OPTION) {
+                Mcontrole.ExcluirMusicas(txtNome);
+                JOptionPane.showMessageDialog(null, "Exclusão feita com sucesso!");
+                this.txtNome.setText("");
+                this.txtNome.requestFocus();
+            }
+        }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**

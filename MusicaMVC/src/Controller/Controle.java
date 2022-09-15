@@ -10,6 +10,7 @@ import Model.Musicas;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTextField;
 
 /**
  *
@@ -17,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class Controle {
      
-    public void CadastrarMusicas(String nome,String compositor,String genero,int ano){
+    public void CadastrarMusicas(String nome,String compositor,String genero,int ano) throws ClassNotFoundException{
         Musicas m1 = new Musicas(nome,compositor,genero,ano);
         MusicaDAO mdao= new MusicaDAO();
         try {
@@ -28,8 +29,10 @@ public class Controle {
             
         
     }
-    public void ExcluirMusicas(String nome) throws SQLException{
+    public void ExcluirMusicas(String nome) throws SQLException, ClassNotFoundException{
         MusicaDAO mDao= new MusicaDAO();
         mDao.Excluir(nome);
     }
+
+    
 }

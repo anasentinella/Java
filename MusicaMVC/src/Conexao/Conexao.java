@@ -5,8 +5,8 @@
  */
 package Conexao;
 
-import com.mysql.jdbc.Connection;
 import static java.lang.System.exit;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -15,7 +15,8 @@ import java.sql.SQLException;
  * @author aluno
  */
 public class Conexao {
-   public Connection getConnection() throws SQLException{
+   public Connection getConnection() throws SQLException, ClassNotFoundException{
+        Class.forName("com.mysql.jdbc.Driver");
        String url="jdbc:mysql://143.106.241.3:3306/cl201279";
       String usuario="cl201279";
       String senha="cl*17082005";
