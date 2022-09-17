@@ -10,12 +10,14 @@ package Model;
  * @author aluno
  */
 public class Musicas {
+    private int id;
    private String nome;
    private String compositor;
    private String genero;
    private int anoLanc;
 
-    public Musicas(String nome, String compostior, String genero, int anoLanc) {
+    public Musicas(int id,String nome, String compostior, String genero, int anoLanc) {
+        this.id=id;
         this.nome = nome;
         this.compositor = compostior;
         this.genero = genero;
@@ -55,5 +57,13 @@ public class Musicas {
 
     public void setAnoLanc(int anoLanc) {
         this.anoLanc = anoLanc;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -6,11 +6,14 @@
 package View;
 
 import Controller.Controle;
+import Model.Musicas;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -52,6 +55,9 @@ public class FrmMusica extends javax.swing.JFrame {
         txtBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMusicas = new javax.swing.JTable();
+        btnBuscarTodos = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
@@ -104,6 +110,11 @@ public class FrmMusica extends javax.swing.JFrame {
 
         btnBuscar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,6 +132,18 @@ public class FrmMusica extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblMusicas);
 
+        btnBuscarTodos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnBuscarTodos.setText("Buscar Todos");
+        btnBuscarTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarTodosActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setText("Código:");
+        jLabel5.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -131,8 +154,15 @@ public class FrmMusica extends javax.swing.JFrame {
                         .addGap(89, 89, 89)
                         .addComponent(bntCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(btnBuscarTodos, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtId))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnBuscar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -164,26 +194,29 @@ public class FrmMusica extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtCompositor))
+                            .addComponent(txtCompositor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtGenero))
+                            .addComponent(txtGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(txtAno, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bntCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -192,7 +225,12 @@ public class FrmMusica extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtBuscar))))
+                            .addComponent(txtBuscar))
+                        .addGap(43, 43, 43)
+                        .addComponent(btnBuscarTodos, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33))
         );
 
@@ -212,21 +250,26 @@ public class FrmMusica extends javax.swing.JFrame {
     }//GEN-LAST:event_txtGeneroActionPerformed
 
     private void bntCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCadastrarActionPerformed
-        String nome = this.txtNome.getText();
-        String compositor = this.txtCompositor.getText();
-        String genero = this.txtGenero.getText();
-        int ano = Integer.parseInt(this.txtAno.getText());
-        try {
-            Mcontrole.CadastrarMusicas(nome, compositor, genero, ano);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(FrmMusica.class.getName()).log(Level.SEVERE, null, ex);
+        if (txtId.getText().equals("") ||txtNome.getText().equals("") || txtCompositor.getText().equals("") || txtGenero.getText().equals("") || txtAno.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Preencha os campos por favor.");
+        } else {
+            int id = Integer.parseInt(this.txtId.getText());
+            String nome = this.txtNome.getText();
+            String compositor = this.txtCompositor.getText();
+            String genero = this.txtGenero.getText();
+            int ano = Integer.parseInt(this.txtAno.getText());
+            try {
+                Mcontrole.CadastrarMusicas(id,nome, compositor, genero, ano);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(FrmMusica.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        this.txtId.setText("");
         this.txtNome.setText("");
         this.txtCompositor.setText("");
         this.txtGenero.setText("");
         this.txtAno.setText("");
-        this.txtNome.requestFocus();
-
+        this.txtId.requestFocus();
     }//GEN-LAST:event_bntCadastrarActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
@@ -234,21 +277,61 @@ public class FrmMusica extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        if (txtNome.getText().equals(""))
-            JOptionPane.showMessageDialog(null, "Preencha o campo código ao lado.");
+       if (txtExcluir.getText().equals(""))
+            JOptionPane.showMessageDialog(null, "Preencha corretamente o campo ao lado com o codigo da música.");
         else {
-            
-            int reply = JOptionPane.showConfirmDialog(null,
-                    "Deseja Excluir a música selecionada?" + txtNome + "?",
+            int idd = Integer.parseInt(txtId.getText());
+            int reply = JOptionPane.showConfirmDialog(null, 
+                    "Realmente deseja excluir a música de código " + idd + "?",
                     "Aviso do Sistema!", JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
-                Mcontrole.ExcluirMusicas(txtNome);
-                JOptionPane.showMessageDialog(null, "Exclusão feita com sucesso!");
-                this.txtNome.setText("");
-                this.txtNome.requestFocus();
+                try {
+                    Mcontrole.ExcluirMusicas(idd);
+                } 
+                catch (SQLException | ClassNotFoundException ex) {
+                    Logger.getLogger(FrmMusica.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                JOptionPane.showMessageDialog(null, "Excluído com sucesso!");
             }
         }
+         this.txtExcluir.setText("");
+         this.txtExcluir.requestFocus();
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnBuscarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarTodosActionPerformed
+       ArrayList<Musicas> listaMU;
+            try {
+                listaMU = Mcontrole.buscarTodasMusicas();
+                DefaultTableModel dados = (DefaultTableModel) tblMusicas.getModel();
+                dados.setNumRows(0);
+                for(Musicas mu: listaMU) {
+                    dados.addRow(new Object[]{mu.getId(),mu.getNome(),mu.getCompositor(),mu.getGenero(),mu.getAnoLanc()});
+                }
+            } 
+            catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Não foi possível exibir os produtos.");
+            } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FrmMusica.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnBuscarTodosActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        if (txtBuscar.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Preencha corretamente o campo 'código' acima.");
+        } else {
+            Musicas m;
+            try {
+                 m = Mcontrole.buscarMusica(Integer.parseInt(txtId.getText()));
+                DefaultTableModel dados = (DefaultTableModel) tblMusicas.getModel();
+                dados.setNumRows(0);
+                dados.addRow(new Object[]{m.getNome(), m.getCompositor(), m.getGenero(), m.getAnoLanc()});
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(FrmMusica.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        this.txtBuscar.setText("");
+        this.txtBuscar.requestFocus();
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,21 +361,21 @@ public class FrmMusica extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmMusica().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new FrmMusica().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntCadastrar;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnBuscarTodos;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblMusicas;
     private javax.swing.JTextField txtAno;
@@ -300,6 +383,7 @@ public class FrmMusica extends javax.swing.JFrame {
     private javax.swing.JTextField txtCompositor;
     private javax.swing.JTextField txtExcluir;
     private javax.swing.JTextField txtGenero;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }
