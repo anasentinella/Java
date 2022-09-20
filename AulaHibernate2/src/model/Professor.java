@@ -17,14 +17,15 @@ import javax.persistence.Table;
  * @author aluno
  */
 @Entity
-@Table (name ="PRofJava")
+@Table(name = "PRofJava")
 public class Professor {
-     @Column(name = "Nome",nullable = false, length = 100)
+
+    @Column(name = "Nome", nullable = false, length = 100)
     private String nome;
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int matricula;
-    @Column (name = "Email",unique=true,nullable = false, length = 100)
+    @Column(name = "Email", unique = true, nullable = false, length = 100)
     private String email;
     @Column
     private float salario;
@@ -32,13 +33,11 @@ public class Professor {
     public Professor() {
     }
 
-    public Professor(String nome, int matricula, String email, float salario) {
+    public Professor(String nome, String email, float salario) {
         this.nome = nome;
-        this.matricula = matricula;
         this.email = email;
         this.salario = salario;
     }
-
 
     public String getNome() {
         return nome;
